@@ -38,7 +38,7 @@ a{text-decoration:none;color:inherit}
   object-fit:contain;
   padding:3px;
   flex:none;
-  box-shadow:0 3px 12px rgba(0,0,0,.25);
+  box-shadow:0 3px 10px rgba(0,0,0,.25);
 }
 
 .brand{
@@ -125,17 +125,37 @@ footer{background:var(--navy);color:#d7e0ec;margin-top:18px}
 .stats div{display:flex;gap:8px;align-items:center;margin:8px 0;font-size:11px}.stats strong{display:block;font-size:14px;color:#fff}
 .copy{border-top:1px solid #ffffff18;padding:11px;text-align:center;font-size:10px;color:#b9c5d4}
 
-  /* MOBILE */
+/* MOBILE */
 @media(max-width:900px){
  .quick{grid-template-columns:repeat(3,1fr)}.three{grid-template-columns:1fr}.lower{grid-template-columns:repeat(2,1fr)}
  .tagline{display:none}.foot{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
- .head{height:auto;padding:12px 0}.brand h1{font-size:22px}.brand p{font-size:9px}
- .logo{width:48px;height:48px}.nav{display:grid;grid-template-columns:repeat(3,1fr)}.nav a{text-align:center;padding:10px 5px;font-size:11px}
+ .head{height:auto;padding:10px 0}.brand h1{font-size:19px}.brand p{font-size:9px;line-height:1.3}
+ .logo{width:50px;height:50px}.nav{display:grid;grid-template-columns:repeat(3,1fr)}.nav a{text-align:center;padding:10px 5px;font-size:11px}
  .quick{grid-template-columns:repeat(2,1fr)}.q{min-height:70px}.q strong{font-size:13px}.q small{font-size:9px}
  .ticker-more{display:none}.ticker-title{font-size:11px}.ticker-body{font-size:10px}
  .lower{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}.foot{grid-template-columns:1fr}
+}
+
+/* PREMIUM CONTENT POLISH */
+.q,.panel,.smallpanel,.faq{transition:transform .18s ease,box-shadow .18s ease}
+.q:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.14)}
+.panel:hover,.smallpanel:hover{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.row a:hover,.linkrow:hover,.list a:hover,.foot a:hover{color:#c90036}
+.row a,.linkrow,.list a{transition:.15s ease}
+.row a:hover{padding-left:4px}
+.search-wrap{margin:14px 0;display:flex;gap:8px}
+.search-wrap input{flex:1;border:1px solid #cfd8e3;border-radius:5px;padding:11px 13px;font-size:13px;outline:none;background:#fff}
+.search-wrap input:focus{border-color:#1261c9;box-shadow:0 0 0 3px rgba(18,97,201,.1)}
+.search-wrap button{border:0;border-radius:5px;background:#c90036;color:#fff;font-weight:800;padding:0 18px;cursor:pointer}
+.no-results{display:none;background:#fff;border:1px solid var(--border);padding:14px;border-radius:5px;color:#657386;font-size:13px}
+@media(max-width:600px){
+ .head{padding:10px 0}
+ .brand h1{font-size:19px}
+ .brand p{font-size:9px;line-height:1.3}
+ .logo{width:50px;height:50px}
+ .search-wrap button{padding:0 13px}
 }
 
 </style>
@@ -164,6 +184,13 @@ footer{background:var(--navy);color:#d7e0ec;margin-top:18px}
 </nav>
 
 <main class="container">
+
+  <div class="search-wrap">
+    <input id="siteSearch" type="search" placeholder="Search Jobs, Results, Admit Card..." aria-label="Search website">
+    <button type="button" onclick="runSearch()">Search</button>
+  </div>
+  <div id="noResults" class="no-results">कोई matching result नहीं मिला। दूसरा keyword try करें।</div>
+
  <div class="ticker">
   <div class="ticker-title">🔔 Latest Updates</div>
   <div class="ticker-body">
@@ -188,32 +215,32 @@ footer{background:var(--navy);color:#d7e0ec;margin-top:18px}
   <div class="panel" id="jobs">
    <div class="panel-title redbar">▣ &nbsp; Latest Jobs <small>View All ›</small></div>
    <div class="rows">
-    <div class="row"><span class="date">10 Jun 2026</span><a href="#">SSC CGL 2026 Notification</a><span class="pill">SSC</span></div>
-    <div class="row"><span class="date">09 Jun 2026</span><a href="#">Railway Group D 2026 Recruitment</a><span class="pill r">Railway</span></div>
-    <div class="row"><span class="date">08 Jun 2026</span><a href="#">UP Police Constable 2026</a><span class="pill g">UP Police</span></div>
-    <div class="row"><span class="date">07 Jun 2026</span><a href="#">Bihar SSC Inter Level 2026</a><span class="pill o">Bihar SSC</span></div>
-    <div class="row"><span class="date">06 Jun 2026</span><a href="#">RPSC 2nd Grade Teacher 2026</a><span class="pill p">RPSC</span></div>
-    <div class="row"><span class="date">05 Jun 2026</span><a href="#">IBPS PO 2026 Recruitment</a><span class="pill c">IBPS</span></div>
-    <div class="row"><span class="date">04 Jun 2026</span><a href="#">CTET July 2026 Notification</a><span class="pill r">CTET</span></div>
-    <div class="row"><span class="date">03 Jun 2026</span><a href="#">Indian Army Agniveer 2026</a><span class="pill">Army</span></div>
-    <div class="row"><span class="date">02 Jun 2026</span><a href="#">RPF Constable 2026</a><span class="pill p">RPF</span></div>
-    <div class="row"><span class="date">01 Jun 2026</span><a href="#">ESIC UDC 2026</a><span class="pill c">ESIC</span></div>
+    <div class="row"><span class="date">10 Jun 2026</span><a href="recruitment.html?post=ssc-cgl-2026">SSC CGL 2026 Notification</a><span class="pill">SSC</span></div>
+    <div class="row"><span class="date">09 Jun 2026</span><a href="recruitment.html?post=railway-group-d-2026">Railway Group D 2026 Recruitment</a><span class="pill r">Railway</span></div>
+    <div class="row"><span class="date">08 Jun 2026</span><a href="recruitment.html?post=up-police-constable-2026">UP Police Constable 2026</a><span class="pill g">UP Police</span></div>
+    <div class="row"><span class="date">07 Jun 2026</span><a href="recruitment.html?post=bihar-ssc-inter-level-2026">Bihar SSC Inter Level 2026</a><span class="pill o">Bihar SSC</span></div>
+    <div class="row"><span class="date">06 Jun 2026</span><a href="recruitment.html?post=rpsc-2nd-grade-teacher-2026">RPSC 2nd Grade Teacher 2026</a><span class="pill p">RPSC</span></div>
+    <div class="row"><span class="date">05 Jun 2026</span><a href="recruitment.html?post=ibps-po-2026">IBPS PO 2026 Recruitment</a><span class="pill c">IBPS</span></div>
+    <div class="row"><span class="date">04 Jun 2026</span><a href="recruitment.html?post=ctet-july-2026">CTET July 2026 Notification</a><span class="pill r">CTET</span></div>
+    <div class="row"><span class="date">03 Jun 2026</span><a href="recruitment.html?post=army-agniveer-2026">Indian Army Agniveer 2026</a><span class="pill">Army</span></div>
+    <div class="row"><span class="date">02 Jun 2026</span><a href="recruitment.html?post=rpf-constable-2026">RPF Constable 2026</a><span class="pill p">RPF</span></div>
+    <div class="row"><span class="date">01 Jun 2026</span><a href="recruitment.html?post=esic-udc-2026">ESIC UDC 2026</a><span class="pill c">ESIC</span></div>
    </div>
   </div>
 
   <div class="panel" id="results">
    <div class="panel-title greenbar">◉ &nbsp; Latest Results <small>View All ›</small></div>
    <div class="rows">
-    <div class="row"><span class="date">10 Jun 2026</span><a href="#">SSC CGL Tier 1 Result 2026</a><span class="pill g">Result</span></div>
-    <div class="row"><span class="date">08 Jun 2026</span><a href="#">UPPSC RO/ARO Pre Result 2026</a><span class="pill g">Result</span></div>
-    <div class="row"><span class="date">06 Jun 2026</span><a href="#">RRB NTPC CBT 1 Result 2026</a><span class="pill g">Result</span></div>
-    <div class="row"><span class="date">04 Jun 2026</span><a href="#">Bihar SSC Inter Level Result 2026</a><span class="pill g">Result</span></div>
-    <div class="row"><span class="date">02 Jun 2026</span><a href="#">IBPS PO Mains Result 2026</a><span class="pill g">Result</span></div>
-    <div class="row"><span class="date">31 May 2026</span><a href="#">Rajasthan Patwari Result 2026</a><span class="pill g">Result</span></div>
-    <div class="row"><span class="date">28 May 2026</span><a href="#">UP Board 10th Result 2026</a><span class="pill g">Result</span></div>
-    <div class="row"><span class="date">26 May 2026</span><a href="#">MP Board 12th Result 2026</a><span class="pill g">Result</span></div>
-    <div class="row"><span class="date">24 May 2026</span><a href="#">CTET Result 2026</a><span class="pill g">Result</span></div>
-    <div class="row"><span class="date">22 May 2026</span><a href="#">Army Agniveer Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">10 Jun 2026</span><a href="result.html?post=ssc-cgl-tier-1-result-2026">SSC CGL Tier 1 Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">08 Jun 2026</span><a href="result.html?post=uppsc-ro-aro-pre-result-2026">UPPSC RO/ARO Pre Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">06 Jun 2026</span><a href="result.html?post=rrb-ntpc-cbt-1-result-2026">RRB NTPC CBT 1 Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">04 Jun 2026</span><a href="result.html?post=bihar-ssc-inter-level-result-2026">Bihar SSC Inter Level Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">02 Jun 2026</span><a href="result.html?post=ibps-po-mains-result-2026">IBPS PO Mains Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">31 May 2026</span><a href="result.html?post=rajasthan-patwari-result-2026">Rajasthan Patwari Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">28 May 2026</span><a href="result.html?post=up-board-10th-result-2026">UP Board 10th Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">26 May 2026</span><a href="result.html?post=mp-board-12th-result-2026">MP Board 12th Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">24 May 2026</span><a href="result.html?post=ctet-result-2026">CTET Result 2026</a><span class="pill g">Result</span></div>
+    <div class="row"><span class="date">22 May 2026</span><a href="result.html?post=army-agniveer-result-2026">Army Agniveer Result 2026</a><span class="pill g">Result</span></div>
    </div>
   </div>
 
@@ -284,9 +311,33 @@ footer{background:var(--navy);color:#d7e0ec;margin-top:18px}
 </footer>
 
 <script>
+
 document.querySelectorAll('.faq-item').forEach(item=>{
  item.addEventListener('click',()=>item.classList.toggle('open'));
 });
+
+function runSearch(){
+ const input=document.getElementById('siteSearch');
+ const q=(input.value||'').trim().toLowerCase();
+ const items=[...document.querySelectorAll('.row, .linkrow, .list a, .faq-item')];
+ const no=document.getElementById('noResults');
+ if(!q){
+   items.forEach(el=>el.style.display='');
+   no.style.display='none';
+   return;
+ }
+ let found=0;
+ items.forEach(el=>{
+   const match=el.textContent.toLowerCase().includes(q);
+   el.style.display=match?'':'none';
+   if(match) found++;
+ });
+ no.style.display=found?'none':'block';
+}
+document.getElementById('siteSearch').addEventListener('keydown',e=>{
+ if(e.key==='Enter') runSearch();
+});
+
 </script>
 </body>
 </html>
